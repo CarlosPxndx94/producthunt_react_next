@@ -16,7 +16,7 @@ const useValidacion = (stateInicial, validar, fn) => {
 
             setSubmitForm(false);
         }
-    }, []);
+    }, [errores]);
 
     //Funcion que se ejecuta mientras el usuario escribe.
     const handleChange = e => {
@@ -37,7 +37,6 @@ const useValidacion = (stateInicial, validar, fn) => {
     return {
         values,
         errores,
-        submitForm,
         handleChange,
         handleSubmit
     }
