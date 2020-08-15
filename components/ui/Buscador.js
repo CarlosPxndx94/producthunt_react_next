@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
+import Router from 'next/router'
 
 const InputText = styled.input`
     border: 1px solid var(--gris3);
@@ -28,15 +29,34 @@ const InputSumbit = styled.button`
 `;
 
 export default function Buscador() {
+
+    //useState
+    const [busqueda, setBusqueda] = useState('');
+
+    //Funcion para buscar
+    const handleFormBuscar = e => {
+        e.preventDefault();
+
+        if (busqueda.trim() === '') return;
+
+        //redirecionar al usuario
+        Router.push({
+            pathname: '/buscar',
+            query: { q: busqueda }
+        })
+    }
+
     return (
         <form
             css={css`
                     position: relative;
                 `}
+            onSubmit={handleFormBuscar}
         >
             <InputText
                 type="text"
                 placeholder="Buscar Producto"
+                onChange={e => setBusqueda(e.target.value)}
             />
             <InputSumbit type="submit">
                 Buscar
